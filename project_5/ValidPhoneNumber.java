@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 // Anthony Phillips
 // Project 5
-// Program 2: Valid Phone Number
-// Takes in a string and tells whether it is valid or not.
-// Valid phone numbers match a the pattern given in the assignment.
+// Program 2: Valid Phone Numbers
+// Takes in a string and tells whether it is valid or not
+// by comparing to the pattern "ddd-ddd-dddd"
 
 public class ValidPhoneNumber{
 

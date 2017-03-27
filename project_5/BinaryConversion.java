@@ -18,9 +18,11 @@ public class BinaryConversion{
 
             binaryString = stdIn.next();
 
+            // Sentinel
             if (binaryString.equals("-1"))
                 break;
 
+            // Make sure string is actually binary
             if (isBinary(binaryString))
                 System.out.println("Conversion to decimal: " + binaryToDecimal(binaryString));
             else
