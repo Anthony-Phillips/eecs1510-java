@@ -20,16 +20,28 @@ public class InventoryManagement{
             initializeFile(tmpdir + separator + defaultFilename);
         }
 
+        if (file.isDirectory()){
+            System.out.println("Unable to use file: it is a directory");
+            return;
+        }
+
         while (true){
             return;
         }
     }
 
-    private static boolean writeInventory(){
+    private static boolean writeInventory()
+    throws Exception{
+        if (file.canWrite()){
+
+        }
         return true;
     }
 
     private static boolean readInventory(){
+        if (file.canRead()){
+            
+        }
         return true;
     }
 
@@ -37,7 +49,7 @@ public class InventoryManagement{
         file = new File(filename);
 
         if (!file.exists()){
-            System.out.printf("File %s does not exist.\n", file.getPath());
+            System.out.printf("File %s does not exist.\n", file.getAbsolutePath());
             System.out.println("Creating file.");
             try {
                 file.createNewFile();
@@ -45,10 +57,10 @@ public class InventoryManagement{
                 System.out.println("Unable to create file.");
             }
             if (file.exists()){
-                System.out.printf("File %s created.\n", file.getPath());
+                System.out.printf("File %s created.\n", file.getAbsolutePath());
             }
         }
-        else
-            System.out.printf("Using pre-existing file %s.\n", file.getPath());
+        else 
+            System.out.printf("Using existing file %s.\n", file.getAbsolutePath());
     }
 }
