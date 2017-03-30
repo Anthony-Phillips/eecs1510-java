@@ -37,9 +37,8 @@ public class BinaryConversion{
         int decimal = 0;
 
         for (int  i = 0, j = binaryString.length() - 1; i < binaryString.length(); i++, j--){
-            if (binaryString.charAt(j) == '1'){
+            if (binaryString.charAt(j) == '1')
                 decimal += Math.pow(2, i);
-            }
         }
 
         return decimal;
