@@ -1,4 +1,4 @@
-package Product;
+package inventory;
 
 public class Product{
     // Name
@@ -13,12 +13,12 @@ public class Product{
 
     public int getQuantity(){ return this.quantity; }
 
-    public void setQuantity(int quantity){ this.quantity = quantity }
+    public void setQuantity(int quantity){ this.quantity = quantity; }
 
     // Note
     private String note;
 
-    public int getNote(){ return this.note; }
+    public String getNote(){ return this.note; }
 
     public void setNote(String note){ this.note = note; }
 
