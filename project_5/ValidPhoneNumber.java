@@ -6,7 +6,7 @@ import java.util.Scanner;
 // Project 5
 // Program 2: Valid Phone Numbers
 // Takes in a string and tells whether it is valid or not
-// by comparing to the pattern "ddd-ddd-dddd"
+// by comparing to the pattern "ddd-ddd-dddd", as given
 
 public class ValidPhoneNumber{
 

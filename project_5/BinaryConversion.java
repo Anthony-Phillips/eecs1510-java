@@ -45,14 +45,11 @@ public class BinaryConversion{
         return decimal;
     }
 
-    // Returns true if string only contains '1' or '0'
-    // Returns false otherwise
+    // Returns true if string only contains 1s and/or 0s
     public static boolean isBinary(String binaryString){
 
-        for (int i = 0; i < binaryString.length(); i++){
-            char character = binaryString.charAt(i);
-
-            if (character != '0' && character != '1')
+        for (char c : binaryString.toCharArray()){
+            if (c != '0' && c != '1')
                 return false;
         }
 

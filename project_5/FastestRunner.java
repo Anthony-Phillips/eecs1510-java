@@ -6,8 +6,8 @@ import java.util.Arrays;
 // Anthony Phillips
 // Project 5
 // Program 3: Fastest Runner
-// Takes in a string and tells whether it is valid or not.
-// Valid phone numbers match a the pattern given in the assignment.
+// Pre-populates an array of Runners, prints the contents of the array, 
+// then lists the fastest and second-fastest runners and their corresponding times.
 
 public class FastestRunner{
 
