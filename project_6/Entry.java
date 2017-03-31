@@ -1,6 +1,5 @@
-package inventory;
 
-public class Product{
+public class Entry{
     // Name
     private String name;
 
@@ -23,9 +22,14 @@ public class Product{
     public void setNote(String note){ this.note = note; }
 
     // Constructor
-    public Product(String name, int quantity, String note){
+    public Entry(String name, int quantity, String note){
         this.name = name;
         this.quantity = quantity;
         this.note = note;
+    }
+
+    public String toString(){
+        return String.format("-- %s%n-- %d%n-- %s%n",
+            this.getName(), this.getQuantity(), this.getNote());
     }
 }
