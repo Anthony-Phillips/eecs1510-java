@@ -1,11 +1,11 @@
 
 public class Entry{
     // Name
-    private String name;
+    private String code;
 
-    public String getName(){ return this.name; }
+    public String getCode(){ return this.code; }
 
-    public void setName(String name){ this.name = name; }
+    public void setCode(String code){ this.code = code; }
 
     // Quantity
     private int quantity;
@@ -22,14 +22,29 @@ public class Entry{
     public void setNote(String note){ this.note = note; }
 
     // Constructor
-    public Entry(String name, int quantity, String note){
-        this.name = name;
+    public Entry(String code, int quantity, String note){
+        this.code = code;
         this.quantity = quantity;
         this.note = note;
     }
 
+    public Entry(String code){
+        this.code = code;
+    }
+
+    @Override
     public String toString(){
         return String.format("-- %s%n-- %d%n-- %s%n",
-            this.getName(), this.getQuantity(), this.getNote());
+            this.getCode(), this.getQuantity(), this.getNote());
+    }
+
+    @Override
+    public boolean equals(Object object){
+        if (object == null || !(object instanceof Entry))
+            return false;
+
+        Entry entry = (Entry)object;
+
+        return this.getCode().equalsIgnoreCase(entry.getCode());
     }
 }
