@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.io.File;
+import java.nio.file.Files;
 import java.io.IOException;
+import com.google.gson.Gson;
 
 public class InventoryManagement{
 
@@ -12,7 +14,10 @@ public class InventoryManagement{
 
     private static File file;
 
-    private static Entry[] entries = new Entry[200];
+    private static Entry[] entries = {
+        new Entry("TEST", 1, "This is a test."),
+        new Entry("TEST", 1, "This is a test.")
+    };
 
     public static void main(String[] args){
         String filename;
@@ -30,7 +35,7 @@ public class InventoryManagement{
            try {
                readInventory();
                System.out.println("Successfully read file.");
-           } catch (Exception ex){
+           } catch (IOException e){
                System.out.printf("Unable to read file %s.%n", file.getAbsolutePath());
                return;
            }
@@ -62,7 +67,7 @@ public class InventoryManagement{
                         System.out.printf("Command '%s' requires one argument.%n", command);
                         continue;
                     }
-                    createEntry();
+                    createEntry(argument);
                     break;
                 case "f":
                     if (argument == null){
@@ -76,6 +81,11 @@ public class InventoryManagement{
                     continue;
             }
         }
+        try{
+            writeInventory();
+        } catch (Exception e){
+
+        }
     }
 
     private static void findEntry(){
@@ -86,20 +96,27 @@ public class InventoryManagement{
 
     }
 
-    private static void createEntry(){
+    private static void createEntry(String code){
 
     }
 
     private static boolean writeInventory()
-    throws Exception{
+    throws IOException{
         if (file.canWrite()){
+            Gson gson = new Gson();
+            String json = gson.toJson(entries);
+            Files.write(file.toPath(), json.getBytes());
             return true;
         }
         return false;
     }
 
-    private static boolean readInventory(){
+    private static boolean readInventory()
+    throws IOException{
         if (file.canRead()){
+            Gson gson = new Gson();
+            String json = new String(Files.readAllBytes(file.toPath()));
+            entries = gson.fromJson(json, Entry[].class);
             return true;
         }
         return false;
