@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class InventoryManagement{
 
-    private static final String SYS_TMPDIR = System.getProperty("user.home");
+    private static final String SYS_USER_HOME = System.getProperty("user.home");
     private static final String SYS_FILE_SEP = System.getProperty("file.separator");
     private static final String DEFAULT_FILENAME = ".inventory_management.json";
 
@@ -18,7 +18,7 @@ public class InventoryManagement{
     private static List<Entry> entries = new ArrayList<Entry>();
 
     public static void main(String[] args){
-        String filename = SYS_TMPDIR + SYS_FILE_SEP + DEFAULT_FILENAME;;
+        String filename = SYS_USER_HOME + SYS_FILE_SEP + DEFAULT_FILENAME;;
 
         if (args.length > 0)
             filename = args[0];
