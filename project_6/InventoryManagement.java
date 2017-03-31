@@ -69,7 +69,7 @@ public class InventoryManagement{
                     try{
                         writeInventory();
                     } catch (IOException e){
-                        System.out.printf("Unable to write to file %s.%n", file.getAbsolutePath());
+                        System.out.printf("Error writing to file %s.%n", file.getAbsolutePath());
                     }
                     break mainloop;
                 case "l":
