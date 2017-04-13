@@ -1,4 +1,3 @@
-
 public class Entry{
     // Name
     private String code;
