@@ -11,6 +11,11 @@ public class Inventory{
 
     public Inventory(){
         this.entries = new ArrayList<Entry>();
+    }    
+    
+    public Inventory(File file){
+        this.entries = new ArrayList<Entry>();
+        this.file = file;
     }
 
     /*
@@ -49,15 +54,11 @@ public class Inventory{
      * Read the JSON contents of a file and populate this.entries
      */
 
-    public boolean readFile(){
-        return this.readFile(this.getFile());
+    public boolean load(){
+        return this.load(this.file);
     }
 
-    public boolean readFile(String absolutePath){
-        return this.readFile(new File(absolutePath));
-    }
-
-    public boolean readFile(File file){
+    public boolean load(File file){
         Gson gson = new Gson();
         String json;
 
@@ -68,8 +69,7 @@ public class Inventory{
         }
 
         if (!json.isEmpty()){
-            this.setEntries(
-                gson.fromJson(json, new TypeToken<List<Entry>>(){}.getType()));
+            this.entries = gson.fromJson(json, new TypeToken<List<Entry>>(){}.getType());
         }
 
         return true;
@@ -79,15 +79,11 @@ public class Inventory{
      * Write the current state of this.entries to a file
      */
 
-    public boolean writeFile(){
-        return this.writeFile(this.getFile());
+    public boolean save(){
+        return this.save(this.file);
     }
 
-    public boolean writeFile(String absolutePath){
-        return this.writeFile(new File(absolutePath));
-    }
-
-    public boolean writeFile(File file){
+    public boolean save(File file){
         Gson gson = new Gson();
         String json = gson.toJson(entries);
 
@@ -113,7 +109,7 @@ public class Inventory{
     // Read
     public List<Entry> select(String query){
         List<Entry> resultSet = new ArrayList<Entry>();
-        for (Entry entry : this.getEntries()){
+        for (Entry entry : this.entries){
             if (entry.equals(query)){
                 resultSet.add(entry);
             }
@@ -123,7 +119,7 @@ public class Inventory{
 
     // Update
     public boolean update(Entry entry){
-        this.entries.set()
+        return true;
     }
 
     // Delete
