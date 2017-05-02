@@ -110,8 +110,21 @@ public class InventoryManagement extends Application{
             new EventHandler<TableColumn.CellEditEvent<Entry, Integer>>() {
                 @Override
                 public void handle(TableColumn.CellEditEvent<Entry, Integer> edit) {
+                    int quantity = edit.getNewValue();
+                    if (quantity < 0){
+                        alert("Quantity must be greater than or equal to zero.");
+
+                        // Reset to the old value
+                        edit.getTableView().getItems().get(
+                        edit.getTablePosition().getRow()).setQuantity(edit.getOldValue());
+
+                        // Re-render with the old value
+                        edit.getTableView().getColumns().get(0).setVisible(false);
+                        edit.getTableView().getColumns().get(0).setVisible(true);
+                        return;
+                    }
                     edit.getTableView().getItems().get(
-                    edit.getTablePosition().getRow()).setQuantity(edit.getNewValue());
+                    edit.getTablePosition().getRow()).setQuantity(quantity);
                 }
             }
         );
@@ -171,12 +184,17 @@ public class InventoryManagement extends Application{
                 }
 
                 // Make sure the quantity is an int
-                String quantityInput = quantityTxt.getText();
+                int quantity;
                 try{
-                    entry.setQuantity(Integer.parseInt(quantityInput));
+                    quantity = Integer.parseInt(quantityTxt.getText());
                 } catch (Exception ex)
                 {
                     alert("Quantity must be an integer.");
+                    return;
+                }
+
+                if (quantity < 0){
+                    alert("Quantity must be greater than or equal to zero.");
                     return;
                 }
 
