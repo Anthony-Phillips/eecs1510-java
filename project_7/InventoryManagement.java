@@ -198,6 +198,8 @@ public class InventoryManagement extends Application{
                     return;
                 }
 
+                entry.setQuantity(quantity);
+
                 entry.setNote(noteTxt.getText());
 
                 // Add and sort
@@ -215,9 +217,10 @@ public class InventoryManagement extends Application{
         deleteBtn.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e){
+                Entry selected = table.getSelectionModel().getSelectedItem();
                 // Remove selected rows from table
-                inventory.removeAll(table.getSelectionModel().getSelectedItems());
-                table.getItems().removeAll(table.getSelectionModel().getSelectedItems());
+                table.getItems().remove(selected);
+                inventory.remove(selected);
             }
         });
 
